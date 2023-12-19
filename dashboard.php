@@ -40,7 +40,7 @@ $result = $conn->query($sql);
 
     <div class="container mt-5">
         <div class="form">
-            <p>Hey, <?php echo $_SESSION['username']; ?>!</p>
+            <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
             <p>You are now on the user dashboard page.</p>
             </form>
         </div>
@@ -53,6 +53,7 @@ $result = $conn->query($sql);
             <thead>
                 <tr>
                     <th scope="col" class="text-center">Artikel</th>
+                    <th scope="col" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -69,22 +70,29 @@ $result = $conn->query($sql);
                             echo '<div class="col-xl-6 col-md-12 float-end ps-5 pt-4 pe-5 flex-column">';
                             echo '<h4>' . $row['judul'] . '</h4>';
                             echo '<p>' . $row['subjudul'] . '</p>';
-                            echo '<p class ="mt-5">Author: Admin</p>';
+                            echo '<p class ="mt-5">Author: ' . $row['author'] . '</p>';
                             echo '</div>';
                             echo '</a>';
+                            echo '</th>';
+                            echo '<th scope="col" class="text-center">';
+                            echo '<a href="update_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3">Update</a>';
+                            echo '<a href="delete_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3">Delete</a>';
                             echo '</th>';
                             echo '</tr>';
                         }
                     }
-                    if(!$check){
+                    if (!$check) {
                         echo '<tr><th scope="col" id="desc">No Articles found</th></tr>';
                     }
                 }
                 $conn->close();
                 ?>
             </tbody>
-        </table>
 
+        </table>
+        <div class="text-start mt-3">
+            <a href="post_article.php" class="btn btn-primary">Add New Article</a>
+        </div>
 </body>
 
 </html>

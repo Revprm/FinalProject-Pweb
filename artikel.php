@@ -13,9 +13,19 @@ if ($result->num_rows > 0) {
     $articleTitle = $row['judul'];
     $content = $row['deskripsi'];
     $image_url = $row['image_url'];
+
+    $paragraphs = explode("\n", $content);
+
+    $firstParagraph = '<p class="col-xl-6 float-end p-4 me-5 mt-5 text-center">' . trim($paragraphs[0]) . '</p>';
+    $remainingParagraphs = '';
+
+    for ($i = 1; $i < count($paragraphs); $i++) {
+        $remainingParagraphs .= '<p class="px-5 py-1">' . trim($paragraphs[$i]) . '</p>';
+    }
 } else {
     $articleTitle = "Article Not Found";
-    $content = ["The requested article does not exist."];
+    $firstParagraph = '';
+    $remainingParagraphs = '<p>The requested article does not exist.</p>';
 }
 
 $conn->close();
@@ -41,7 +51,7 @@ $conn->close();
     </div>
     <div class="container-fluid justify-content-center">
         <?php echo '<img class="p-3 rounded-5 col-xl-5 mw-100" width="400px" src="' . $row['image_url'] . '" alt="' . $row['judul'] . '">'; ?>
-        <?php echo $content ?>
+        <?php echo $firstParagraph . $remainingParagraphs; ?>
     </div>
 
     <div class="text-center">

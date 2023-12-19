@@ -10,8 +10,16 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];
     $content = $_POST["content"];
+    $subtitle = $_POST["subtitle"];
+    $image_links = $_POST["image_links"];
     $author = $_SESSION['username'];
+
+    $sql = "INSERT INTO artikel (judul, deskripsi, subjudul, image_url, author) VALUES ('$title', '$content', '$subtitle', '$image_links', '$author')";
+    $result = $conn->query($sql);
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="navbar-brand" href="#">Articles Website</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="dashboard.php">Dashboard</a>
                 <a class="nav-link" href="logout.php">Logout</a>
             </div>
         </div>
@@ -42,22 +51,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container mt-5 align-content-lg-center bg-gs container-fluid rounded-3">
         <div class="container-fluid rounded-3">
-            <form class="row g-3 m-3">
+            <form class="row g-3 m-3" method="post" name="add_article">
                 <div class="col-12 mb-3">
                     <label for="inputTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Enter the title">
+                    <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Enter the title">
                 </div>
                 <div class="col-12 mb-3">
                     <label for="inputSubtitle" class="form-label">Subtitle</label>
-                    <input type="text" class="form-control" id="inputSubtitle" placeholder="Enter the subtitle">
+                    <input type="text" class="form-control" name="subtitle" id="inputSubtitle" placeholder="Enter the subtitle">
                 </div>
                 <div class="col-12 mb-3">
                     <label for="inputContent" class="form-label">Content</label>
-                    <textarea class="form-control" id="inputContent" rows="4" placeholder="Enter the content"></textarea>
+                    <textarea class="form-control" name="content" id="inputContent" rows="4" placeholder="Enter the content"></textarea>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="inputImageLinks" class="form-label">Image Links</label>
-                    <input type="text" class="form-control" id="inputImageLinks" placeholder="Enter image links (comma-separated)">
+                    <input type="text" class="form-control" name="image_links" id="inputImageLinks" placeholder="Enter image links (comma-separated)">
                 </div>
                 <div class="col-12 mb-3">
                     <button type="submit" class="btn btn-primary rounded-2" style="width: 1224px;">Submit</button>
