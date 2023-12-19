@@ -10,14 +10,6 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM artikel";
 $result = $conn->query($sql);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Handle form submission and article insertion here
-    // Example: 
-    // $title = $_POST["title"];
-    // $content = $_POST["content"];
-    // Perform database insertion
-    // Redirect or display a success message as needed
-}
 ?>
 
 <!DOCTYPE html>
@@ -65,9 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </thead>
             <tbody id="myTable">
                 <?php
+                $check = false;
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         if ($row['author'] == $_SESSION['username']) {
+                            $check = true;
                             echo '<tr>';
                             echo '<th scope="col" id="desc">';
                             echo '<a href="artikel.php?id=' . $row['id'] . '" target="_blank" style="text-decoration: none;">';
@@ -80,10 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             echo '</a>';
                             echo '</th>';
                             echo '</tr>';
-                        } else {
-                            echo '<tr><th scope="col" id="desc">No Articles found</th></tr>';
-                            break;
                         }
+                    }
+                    if(!$check){
+                        echo '<tr><th scope="col" id="desc">No Articles found</th></tr>';
                     }
                 }
                 $conn->close();
