@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("sqlcon.php");
 
 $conn = dbconn();
@@ -19,25 +21,30 @@ $result = $conn->query($sql);
   <title>Tugas 5</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/gs_color.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="assets/js/script.js"></script>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Your Website</a>
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="login.php">Login</a>
-          <a class="nav-link" href="registration.php">Register</a>
-        </div>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs" id="home_navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Articles Website</a>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="index.php">Home</a>
+        <?php
+        if (isset($_SESSION['username'])) {
+          echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
+        } else {
+          echo '<a class="nav-link" href="login.php">Login</a>';
+        }
+        ?>
       </div>
-    </nav>
-
+    </div>
+  </nav>
 
   <section id="About">
     <div class="container-fluid text-center">
@@ -69,6 +76,12 @@ $result = $conn->query($sql);
             echo '<div class="col-xl-6 col-md-12 float-end ps-5 pt-4 pe-5 flex-column">';
             echo '<h4>' . $row['judul'] . '</h4>';
             echo '<p>' . $row['subjudul'] . '</p>';
+            if($row['author'] != null){
+              echo '<p class ="mt-5">Author: ' . $row['author'] . '</p>';
+            }
+            else{
+              echo '<p class ="mt-5">Author: Admin</p>';
+            }
             echo '</div>';
             echo '</a>';
             echo '</th>';

@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Login</title>
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/gs_color.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </head>
+
 <body>
-<?php
+    <?php
     require('sqlcon.php');
     $conn = dbconn();
     session_start();
@@ -19,29 +26,36 @@
         // Check user is exist in the database
         $query    = "SELECT * FROM `users` WHERE username='$username'
                      AND password='" . md5($password) . "'";
-        $result = mysqli_query($conn, $query) or die(mysql_error());
+        $result = mysqli_query($conn, $query);
         $rows = mysqli_num_rows($result);
         if ($rows == 1) {
             $_SESSION['username'] = $username;
-            // Redirect to user dashboard page
             header("Location: dashboard.php");
         } else {
-            echo "<div class='form'>
-                  <h3>Incorrect Username/password.</h3><br/>
-                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
-                  </div>";
+            echo "<form class='form rounded-4'>
+                  <p class='text-center mt-2 mb-3'>Username/password is incorrect.</h4>
+                  <br/>Click here to <a href='login.php'>Login</a></form>";
         }
     } else {
-?>
-    <form class="form" method="post" name="login">
-        <h1 class="login-title">Login</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
-        <input type="password" class="login-input" name="password" placeholder="Password"/>
-        <input type="submit" value="Login" name="submit" class="login-button"/>
-        <p class="link"><a href="registration.php">New Registration</a></p>
-  </form>
-<?php
+    ?>
+        <form class="form rounded-4" method="post" name="login">
+            <h4 class="text-center mt-2 mb-3">Login</h1>
+                <div class="mb-3">
+                    <label for="username-input" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username-input" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label for="inputpassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="inputpassword" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
+                    <p class="link mt-3"><a href="registration.php">Register</a></p>
+                </div>
+        </form>
+    <?php
     }
-?>
+    ?>
 </body>
+
 </html>

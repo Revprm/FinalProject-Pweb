@@ -30,6 +30,7 @@ $conn->close();
     <title><?php echo $articleTitle ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/gs_color.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
@@ -41,6 +42,12 @@ $conn->close();
     <div class="container-fluid justify-content-center">
         <?php echo '<img class="p-3 rounded-5 col-xl-5 mw-100" width="400px" src="' . $row['image_url'] . '" alt="' . $row['judul'] . '">'; ?>
         <?php echo $content ?>
+    </div>
+
+    <div class="text-center">
+        <a href="index.php">
+            <button type="button" class="btn">Back</button>
+        </a>
     </div>
 
     <footer class="text-center pt-5">

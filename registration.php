@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Registration</title>
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/gs_color.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </head>
+
 <body>
-<?php
+    <?php
     require('sqlcon.php');
     $conn = dbconn();
     // When form submitted, insert values into the database.
@@ -35,17 +42,29 @@
                   </div>";
         }
     } else {
-?>
-    <form class="form" action="" method="post">
-        <h1 class="login-title">Registration</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" required />
-        <input type="text" class="login-input" name="email" placeholder="Email Adress">
-        <input type="password" class="login-input" name="password" placeholder="Password">
-        <input type="submit" name="submit" value="Register" class="login-button">
-        <p class="link"><a href="login.php">Click to Login</a></p>
-    </form>
-<?php
+    ?>
+        <form class="form rounded-4" method="post" name="login">
+            <h4 class="text-center mt-2 mb-3">Register</h1>
+                <div class="mb-3">
+                    <label for="email-input" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="email" id="email-input" placeholder="Email Address">
+                </div>
+                <div class="mb-3">
+                    <label for="username-input" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username-input" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label for="inputpassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="inputpassword" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
+                    <p class="link mt-3">Already have an account? <a href="login.php">Login</a></p>
+                </div>
+        </form>
+    <?php
     }
-?>
+    ?>
 </body>
+
 </html>
