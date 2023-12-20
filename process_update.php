@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        $_SESSION['username'] = $newUsername;  // Update the session with the new username
+        $_SESSION['username'] = $newUsername; 
         header("Location: dashboard.php");
     } else {
         echo "Failed to update account. Please try again.";

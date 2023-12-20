@@ -29,7 +29,6 @@ if (isset($_GET['id'])) {
                 <a href="dashboard.php">
                     <button type="button" class="btn shadow-lg mt-4 rounded-3" style="width: 250px;">No</button>
                 </a>
-                <!-- Change the following line: -->
                 <button type="submit" class="btn shadow-lg mt-4 rounded-3" style="width: 250px;">Yes</button>
             </form>
         </div>
@@ -41,7 +40,6 @@ if (isset($_GET['id'])) {
 
 <?php
 } else {
-    // Handle case where article ID is not provided
     echo "Article ID not specified.";
 }
 ?>

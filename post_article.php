@@ -3,6 +3,7 @@ include("auth_session.php");
 include("sqlcon.php");
 
 $conn = dbconn();
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -14,12 +15,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image_links = $_POST["image_links"];
     $author = $_SESSION['username'];
 
-    $sql = "INSERT INTO artikel (judul, deskripsi, subjudul, image_url, author) VALUES ('$title', '$content', '$subtitle', '$image_links', '$author')";
-    $result = $conn->query($sql);
+    // Use prepared statement to prevent SQL injection
+    $userQuery = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $userQuery->bind_param("s", $author);
+    $userQuery->execute();
+    $userResult = $userQuery->get_result();
+
+    if ($userResult->num_rows > 0) {
+        $userData = $userResult->fetch_assoc();
+        $id_user = $userData['id'];
+
+        // Use prepared statement to prevent SQL injection
+        $sql = $conn->prepare("INSERT INTO artikel (judul, deskripsi, subjudul, image_url, id_user) VALUES (?, ?, ?, ?, ?)");
+        $sql->bind_param("ssssi", $title, $content, $subtitle, $image_links, $id_user);
+        $result = $sql->execute();
+
+        if ($result) {
+            echo "Article inserted successfully!";
+        } else {
+            echo "Error inserting article: " . $conn->error;
+        }
+    } else {
+        echo "User not found!";
+    }
+    $userQuery->close();
+    $sql->close();
 }
-
-
-
+$conn->close();
 ?>
 
 <!DOCTYPE html>

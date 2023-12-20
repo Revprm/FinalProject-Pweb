@@ -36,7 +36,7 @@
         } else {
             echo "<form class='form rounded-4'>
                   <p class='text-center mt-2 mb-3'>Username/password is incorrect.</p>
-                  <br/>Click here to <a href='login.php'>Login</a></form>";
+                  <br/>Click here to <a href='user_login.php'>Login</a></form>";
         }
     } else {
     ?>

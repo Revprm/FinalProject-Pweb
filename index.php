@@ -9,7 +9,10 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM artikel";
+$sql = "SELECT artikel.id, artikel.judul, artikel.subjudul, artikel.image_url, users.username AS author 
+        FROM artikel
+        INNER JOIN users ON artikel.id_user = users.id";
+
 $result = $conn->query($sql);
 
 ?>
@@ -38,7 +41,7 @@ $result = $conn->query($sql);
         <?php
         if (isset($_SESSION['username'])) {
           echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
-          echo'<a class="nav-link" href="user_logout.php">Logout</a>';
+          echo '<a class="nav-link" href="user_logout.php">Logout</a>';
         } else {
           echo '<a class="nav-link" href="user_login.php">Login</a>';
         }
@@ -77,12 +80,7 @@ $result = $conn->query($sql);
             echo '<div class="col-xl-6 col-md-12 float-end ps-5 pt-4 pe-5 flex-column">';
             echo '<h4>' . $row['judul'] . '</h4>';
             echo '<p>' . $row['subjudul'] . '</p>';
-            if($row['author'] != null){
-              echo '<p class ="mt-5">Author: ' . $row['author'] . '</p>';
-            }
-            else{
-              echo '<p class ="mt-5">Author: Admin</p>';
-            }
+            echo '<p class ="mt-5">Author: ' . $row['author'] . '</p>';
             echo '</div>';
             echo '</a>';
             echo '</th>';
@@ -97,9 +95,9 @@ $result = $conn->query($sql);
     </table>
 
     <div class="pagination float-end pt-1">
-      <button id="prevPage" class="btn shadow-lg">Previous</button>
+      <button id="prevPage" class="btn shadow-lg rounded-3" style="width: 125px;">Previous</button>
       <span id="pageInfo" class="pt-1 me-2 ms-2">Page 1</span>
-      <button id="nextPage" class="btn shadow-lg">Next</button>
+      <button id="nextPage" class="btn shadow-lg rounded-3" style="width: 125px;">Next</button>
     </div>
   </div>
 

@@ -12,12 +12,14 @@ if ($conn->connect_error) {
 
 if (isset($_POST['submit'])) {
     $newUsername = $_POST['new-username'];
+    $newEmail = $_POST['new-email'];
     $newPassword = $_POST['new-password'];
+    
 
-    $query = "UPDATE `users` SET username=?, password=? WHERE username=?";
+    $query = "UPDATE `users` SET username=?, email =?,  password=? WHERE username=?";
     $stmt = $conn->prepare($query);
     $hashedPassword = md5($newPassword);
-    $stmt->bind_param("sss", $newUsername, $hashedPassword, $_SESSION['username']);
+    $stmt->bind_param("ssss", $newUsername, $newEmail, $hashedPassword, $_SESSION['username']);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {

@@ -34,6 +34,10 @@ include("auth_session.php");
             <h4 class="text-center mt-2 mb-3">Account Settings</h4>
             <form action="user_update.php" method="post">
                 <div class="mb-3">
+                    <label for="new-email" class="form-label">New Email</label>
+                    <input type="text" class="form-control" name="new-email" id="new-email" placeholder="New Email" required>
+                </div>
+                <div class="mb-3">
                     <label for="new-username" class="form-label">New Username</label>
                     <input type="text" class="form-control" name="new-username" id="new-username" placeholder="New Username" required>
                 </div>
@@ -46,7 +50,7 @@ include("auth_session.php");
                 </div>
             </form>
             <div class="col-12 mb-3">
-                <a href="delete.php">
+                <a href="user_delete.php">
                     <button class="btn btn-primary rounded-2" style="width: 250px;">Delete</button>
                 </a>
             </div>

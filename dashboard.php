@@ -7,7 +7,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM artikel";
+$sql = "SELECT artikel.id, artikel.judul, artikel.subjudul, artikel.image_url, users.username AS author 
+        FROM artikel
+        INNER JOIN users ON artikel.id_user = users.id";
+
 $result = $conn->query($sql);
 
 ?>
@@ -62,10 +65,6 @@ $result = $conn->query($sql);
                 <?php
                 $check = false;
                 if ($result->num_rows > 0) {
-                    $stmt = $conn->prepare("SELECT * FROM artikel WHERE author = ?");
-                    $stmt->bind_param("s", $_SESSION['username']);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
                     while ($row = $result->fetch_assoc()) {
                         if ($row['author'] == $_SESSION['username']) {
                             $check = true;
@@ -81,8 +80,8 @@ $result = $conn->query($sql);
                             echo '</a>';
                             echo '</th>';
                             echo '<th scope="col" class="text-center">';
-                            echo '<a href="update_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3">Update</a>';
-                            echo '<a href="delete_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3">Delete</a>';
+                            echo '<a href="update_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3" style="width: 125px;">Update</a>';
+                            echo '<a href="delete_article.php?id=' . $row['id'] . '" class="btn mb-3 rounded-3" style="width: 125px;">Delete</a>';
                             echo '</th>';
                             echo '</tr>';
                         }
@@ -91,7 +90,6 @@ $result = $conn->query($sql);
                         echo '<tr><th scope="col" id="desc">No Articles found</th>';
                         echo '<th scope="col" id="desc"></th>';
                         echo '</tr>';
-                        
                     }
                 }
                 $conn->close();
@@ -99,8 +97,14 @@ $result = $conn->query($sql);
             </tbody>
 
         </table>
+        <div class="pagination float-end pt-1">
+            <button id="prevPage" class="btn shadow-lg rounded-3" style="width: 100px;">Previous</button>
+            <span id="pageInfo" class="pt-1 me-2 ms-2">Page 1</span>
+            <button id="nextPage" class="btn shadow-lg rounded-3" style="width: 100px;">Next</button>
+        </div>
+
         <div class="text-start mt-3">
-            <a href="post_article.php" class="btn btn-primary shadow-lg">Add New Article</a>
+            <a href="post_article.php" class="btn btn-primary shadow-lg rounded-3">Add New Article</a>
         </div>
 </body>
 
