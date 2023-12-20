@@ -20,7 +20,7 @@ include("auth_session.php");
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Articles Website</a>
+            <a class="navbar-brand" href="#">Masits</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link" href="dashboard.php">Dashboard</a>
