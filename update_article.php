@@ -10,34 +10,33 @@ if (!isset($_SESSION['username'])) {
 $conn = dbconn();
 
 if (!isset($_GET['id'])) {
-    echo "Article ID is missing.";
+    echo "Makanan atau Minuman ID tidak ditemukan.";
     exit();
 }
 
-$article_id = $_GET['id'];
+$makanan_id = $_GET['id'];
 
-$sql = "SELECT * FROM artikel WHERE id = ?";
+$sql = "SELECT * FROM makanan WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $article_id);
+$stmt->bind_param("i", $makanan_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows == 0) {
-    echo "Article not found.";
+    echo "Makanan atau Minuman tidak ditemukan.";
     exit();
 }
 
 $row = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $new_title = $_POST['new_title']; 
-    $new_subtitle = $_POST['new_subtitle'];
-    $new_content = $_POST['new_content'];
-    $new_image_links = $_POST['new_image_links'];
+    $toko_baru = $_POST['toko_baru']; 
+    $foto_makanan = $_POST['foto_makanan'];
+    $lokasi_gmaps = $_POST['lokasi_gmaps'];
 
-    $update_sql = "UPDATE artikel SET judul = ?, subjudul = ?, deskripsi = ?, image_url = ? WHERE id = ?";
+    $update_sql = "UPDATE makanan SET nama_toko = ?, foto_makanan = ?, link_gmaps = ? WHERE id = ?";
     $stmt = $conn->prepare($update_sql);
-    $stmt->bind_param("ssssi", $new_title, $new_subtitle, $new_content, $new_image_links, $article_id);
+    $stmt->bind_param("sssi", $toko_baru, $foto_makanan, $lokasi_gmaps, $makanan_id);
     
     if ($stmt->execute()) {
         echo "Article updated successfully";
@@ -80,20 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-fluid rounded-3">
             <form class="row g-3 m-3" method="post" name="update_article">
                 <div class="col-12 mb-3">
-                    <label for="inputTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" name="new_title" id="inputTitle" placeholder="Enter the title">
+                    <label for="inputTitle" class="form-label">Nama Toko</label>
+                    <input type="text" class="form-control" name="toko_baru" id="inputTitle" placeholder="Masukkan Nama Toko Baru">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="inputSubtitle" class="form-label">Subtitle</label>
-                    <input type="text" class="form-control" name="new_subtitle" id="inputSubtitle" placeholder="Enter the subtitle">
+                    <label for="inputSubtitle" class="form-label">Foto makanan</label>
+                    <input type="text" class="form-control" name="foto_makanan" id="inputSubtitle" placeholder="Masukkan Foto Makanan">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="inputContent" class="form-label">Content</label>
-                    <textarea class="form-control" name="new_content" id="inputContent" rows="4" placeholder="Enter the content"></textarea>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="inputImageLinks" class="form-label">Image Links</label>
-                    <input type="text" class="form-control" name="new_image_links" id="inputImageLinks" placeholder="Enter image links">
+                    <label for="inputContent" class="form-label">Lokasi Toko</label>
+                    <textarea class="form-control" name="lokasi_gmaps" id="inputContent" placeholder="Masukkan lokasi toko"></textarea>
                 </div>
                 <div class="col-12 mb-3">
                     <button type="submit" class="btn btn-primary rounded-2" style="width: 1224px;">Update</button>

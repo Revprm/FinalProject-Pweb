@@ -9,13 +9,11 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["title"];
-    $content = $_POST["content"];
-    $subtitle = $_POST["subtitle"];
-    $image_links = $_POST["image_links"];
+    $namatoko = $_POST["namatoko"];
+    $gmaps = $_POST["gmaps"];
+    $gambar = $_POST["gambar"];
     $author = $_SESSION['username'];
 
-    // Use prepared statement to prevent SQL injection
     $userQuery = $conn->prepare("SELECT id FROM users WHERE username = ?");
     $userQuery->bind_param("s", $author);
     $userQuery->execute();
@@ -25,9 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userData = $userResult->fetch_assoc();
         $id_user = $userData['id'];
 
-        // Use prepared statement to prevent SQL injection
-        $sql = $conn->prepare("INSERT INTO artikel (judul, deskripsi, subjudul, image_url, id_user) VALUES (?, ?, ?, ?, ?)");
-        $sql->bind_param("ssssi", $title, $content, $subtitle, $image_links, $id_user);
+        $sql = $conn->prepare("INSERT INTO makanan (nama_toko, link_gmaps, foto_makanan, id_user) VALUES (?, ?, ?, ?)");
+        $sql->bind_param("sssi", $namatoko, $gmaps, $gambar, $id_user);
         $result = $sql->execute();
 
         if ($result) {
@@ -86,20 +83,16 @@ $conn->close();
         <div class="container-fluid rounded-3">
             <form class="row g-3 m-3" method="post" name="add_article">
                 <div class="col-12 mb-3">
-                    <label for="inputTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Enter the title">
+                    <label for="inputNamatoko" class="form-label">Nama Toko</label>
+                    <input type="text" class="form-control" name="namatoko" id="inputNamatoko" placeholder="Nama Toko">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="inputSubtitle" class="form-label">Subtitle</label>
-                    <input type="text" class="form-control" name="subtitle" id="inputSubtitle" placeholder="Enter the subtitle">
+                    <label for="inputGambar" class="form-label">Link Gambar makanan</label>
+                    <input type="text" class="form-control" name="gambar" id="inputGambar" placeholder="Link Gambar">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="inputContent" class="form-label">Content</label>
-                    <textarea class="form-control" name="content" id="inputContent" rows="4" placeholder="Enter the content"></textarea>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="inputImageLinks" class="form-label">Image Links</label>
-                    <input type="text" class="form-control" name="image_links" id="inputImageLinks" placeholder="Enter image links">
+                    <label for="inputGmaps" class="form-label">Lokasi di Google Maps</label>
+                    <textarea class="form-control" name="gmaps" id="inputGmaps" placeholder="Lokasi Google Maps"></textarea>
                 </div>
                 <div class="col-12 mb-3">
                     <button type="submit" class="btn btn-primary rounded-2" style="width: 1224px;">Submit</button>

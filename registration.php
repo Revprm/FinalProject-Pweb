@@ -30,7 +30,7 @@
         if ($result) {
             echo "<div class='form'>
                   <h3>You are registered successfully.</h3><br/>
-                  <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                  <p class='link'>Click here to <a href='user_login.php'>Login</a></p>
                   </div>";
         } else {
             echo "<div class='form'>
@@ -44,7 +44,7 @@
             <h4 class="text-center mt-2 mb-3">Register</h1>
                 <div class="mb-3">
                     <label for="email-input" class="form-label">Email Adress</label>
-                    <input type="text" class="form-control" name="email" id="email-input" placeholder="Email Address" required>
+                    <input type="email" class="form-control" name="email" id="email-input" placeholder="Email Address" required>
                 </div>
                 <div class="mb-3">
                     <label for="username-input" class="form-label">Username</label>

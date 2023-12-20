@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['article_id'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "DELETE FROM artikel WHERE id = ?";
+    $sql = "DELETE FROM makanan WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $article_id);
 

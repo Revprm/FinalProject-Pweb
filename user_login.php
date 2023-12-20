@@ -23,15 +23,17 @@
         $password = $_POST['password'];
         $hashed_password = md5($password);
 
-        $query = "SELECT * FROM `users` WHERE username = ? AND password = ?";
+        $query = "SELECT id, email FROM `users` WHERE username = ? AND password = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ss", $username, $hashed_password);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
+
             $_SESSION['username'] = $username;
-            $_SESSION['email'] = $email;
+            $_SESSION['email'] = $user['email']; // Set the email to the session
             header("Location: dashboard.php");
             exit();
         } else {

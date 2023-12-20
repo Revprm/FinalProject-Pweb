@@ -2,7 +2,7 @@
 include("auth_session.php");
 
 if (isset($_GET['id'])) {
-    $article_id = $_GET['id'];
+    $makanan_id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -23,9 +23,9 @@ if (isset($_GET['id'])) {
 <body>
     <div class="container mt-5">
         <div class="form rounded-3">
-            <h5 class="text-center">Are you sure you want to delete this article?</h5>
+            <h5 class="text-center">Apakah anda yakin ingin menghapus makanan atau minuman ini?</h5>
             <form action="process_delete_article.php" method="post">
-                <input type="hidden" name="article_id" value="<?php echo $article_id; ?>">
+                <input type="hidden" name="article_id" value="<?php echo $makanan_id; ?>">
                 <a href="dashboard.php">
                     <button type="button" class="btn shadow-lg mt-4 rounded-3" style="width: 250px;">No</button>
                 </a>
@@ -40,6 +40,6 @@ if (isset($_GET['id'])) {
 
 <?php
 } else {
-    echo "Article ID not specified.";
+    echo "Makanan atau Minuman ID tidak ditemukan.";
 }
 ?>

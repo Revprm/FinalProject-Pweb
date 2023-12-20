@@ -9,9 +9,9 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT artikel.id, artikel.judul, artikel.subjudul, artikel.image_url, users.username AS author 
-        FROM artikel
-        INNER JOIN users ON artikel.id_user = users.id";
+$sql = "SELECT makanan.id, makanan.nama_toko, makanan.link_gmaps, makanan.foto_makanan, users.username AS author 
+        FROM makanan
+        INNER JOIN users ON makanan.id_user = users.id";
 
 $result = $conn->query($sql);
 
@@ -33,39 +33,39 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-<section class="ftco-section sticky-top">
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav mr-auto">
-	        	<li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
-	        </ul>
-	      </div>
+  <section class="ftco-section sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fa fa-bars"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
+          </ul>
+        </div>
         <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="index.php">Home</a>
-        <?php
-        if (isset($_SESSION['username'])) {
-          echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
-          echo '<a class="nav-link" href="user_logout.php">Logout</a>';
-        } else {
-          echo '<a class="nav-link" href="user_login.php">Login</a>';
-        }
-        ?>
+          <a class="nav-link" href="index.php">Home</a>
+          <?php
+          if (isset($_SESSION['username'])) {
+            echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
+            echo '<a class="nav-link" href="user_logout.php">Logout</a>';
+          } else {
+            echo '<a class="nav-link" href="user_login.php">Login</a>';
+          }
+          ?>
+        </div>
       </div>
-	    </div>
-	  </nav>
+    </nav>
 
-	</section>
+  </section>
 
   <section id="about" class="d-flex align-items-center">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Apa itu Masits?</h1>
-          <h2>Masits adalah website untuk anda yang belum mengetahui makanan - makanan enak di sekitar ITS</h2>
+          <h2>Masits adalah website untuk anda yang belum mengetahui makanan atau minuman enak di sekitar ITS</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
           </div>
         </div>
@@ -82,7 +82,7 @@ $result = $conn->query($sql);
     <table class="table table-responsive table-hover shadow-lg" id="tabel">
       <thead>
         <tr>
-          <th scope="col" class="text-center">Artikel</th>
+          <th scope="col" class="text-center">Makanan atau minuman</th>
         </tr>
       </thead>
       <tbody id="myTable">
@@ -90,20 +90,20 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             echo '<tr>';
-            echo '<th scope="col" id="desc">';
-            echo '<a href="artikel.php?id=' . $row['id'] . '" target="_blank" style="text-decoration: none;">';
-            echo '<img class="img-responsive mw-100 mh-100 col-xl-6 col-md-12 p-2" width="475px" src="' . $row['image_url'] . '" alt="' . $row['judul'] . '">';
-            echo '<div class="col-xl-6 col-md-12 float-end ps-5 pt-4 pe-5 flex-column">';
-            echo '<h4>' . $row['judul'] . '</h4>';
-            echo '<p>' . $row['subjudul'] . '</p>';
-            echo '<p class ="mt-5">Author: ' . $row['author'] . '</p>';
+            echo '<td>';
+            echo '<div class="row">';
+            echo '<h4 class="text-center pt-2 pb-3">' . $row['nama_toko'] . '</h4>';
+            echo '<div class="col-md-6">';
+            echo '<img class="img-responsive mw-100 mh-100 p-4" width="475px" src="' . $row['foto_makanan'] . '" alt="' . $row['nama_toko'] . '">';
             echo '</div>';
-            echo '</a>';
-            echo '</th>';
-            echo '</tr>';
+            echo '<div class="col-xl-6 col-md-12 p-4">';
+            echo '<iframe src="' . $row['link_gmaps'] . '" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+            echo '</div>';
+            echo '</div>';
+            echo '</td>';
           }
         } else {
-          echo '<tr><th scope="col" id="desc">No articles found</th></tr>';
+          echo '<tr><th scope="col" id="desc">Tidak ada makanan atau minuman yang terdata</th></tr>';
         }
         $conn->close();
         ?>
