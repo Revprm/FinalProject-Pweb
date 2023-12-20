@@ -28,19 +28,19 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs" id="home_navigation">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Articles Website</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link" href="user_settings.php">Settings</a>
-                <a class="nav-link" href="logout.php">Logout</a>
+                <a class="nav-link" href="user_logout.php">Logout</a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <div class="form">
+        <div class="form shadow-lg">
             <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
             <p>Welcome to the the user dashboard</p>
             <p>Feel Free to modify your own articles in our website!</p>
@@ -49,9 +49,9 @@ $result = $conn->query($sql);
     </div>
 
     <div class="container rounded-5 p-5">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <input class="form-control shadow-lg" id="myInput" type="text" placeholder="Search..">
         <br>
-        <table class="table table-responsive table-hover" id="tabel">
+        <table class="table table-responsive table-hover shadow-lg" id="tabel">
             <thead>
                 <tr>
                     <th scope="col" class="text-center">Artikel</th>
@@ -93,7 +93,7 @@ $result = $conn->query($sql);
 
         </table>
         <div class="text-start mt-3">
-            <a href="post_article.php" class="btn btn-primary">Add New Article</a>
+            <a href="post_article.php" class="btn btn-primary shadow-lg">Add New Article</a>
         </div>
 </body>
 

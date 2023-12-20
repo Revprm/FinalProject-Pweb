@@ -56,7 +56,7 @@ $conn->close();
 
     <div class="text-center">
         <a href="index.php">
-            <button type="button" class="btn">Back</button>
+            <button type="button" class="btn rounded-3 shadow-lg">Back</button>
         </a>
     </div>
 

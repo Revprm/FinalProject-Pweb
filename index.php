@@ -30,7 +30,7 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs" id="home_navigation">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Articles Website</a>
       <div class="navbar-nav ms-auto">
@@ -38,6 +38,7 @@ $result = $conn->query($sql);
         <?php
         if (isset($_SESSION['username'])) {
           echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
+          echo'<a class="nav-link" href="user_logout.php">Logout</a>';
         } else {
           echo '<a class="nav-link" href="login.php">Login</a>';
         }
@@ -57,9 +58,9 @@ $result = $conn->query($sql);
   </section>
 
   <div class="container rounded-5 p-5">
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <input class="form-control shadow-lg" id="myInput" type="text" placeholder="Search..">
     <br>
-    <table class="table table-responsive table-hover" id="tabel">
+    <table class="table table-responsive table-hover shadow-lg" id="tabel">
       <thead>
         <tr>
           <th scope="col" class="text-center">Artikel</th>
@@ -96,9 +97,9 @@ $result = $conn->query($sql);
     </table>
 
     <div class="pagination float-end pt-1">
-      <button id="prevPage" class="btn">Previous</button>
+      <button id="prevPage" class="btn shadow-lg">Previous</button>
       <span id="pageInfo" class="pt-1 me-2 ms-2">Page 1</span>
-      <button id="nextPage" class="btn">Next</button>
+      <button id="nextPage" class="btn shadow-lg">Next</button>
     </div>
   </div>
 

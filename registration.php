@@ -16,11 +16,8 @@
     <?php
     require('sqlcon.php');
     $conn = dbconn();
-    // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
-        // removes backslashes
         $username = stripslashes($_REQUEST['username']);
-        //escapes special characters in a string
         $username = mysqli_real_escape_string($conn, $username);
         $email    = stripslashes($_REQUEST['email']);
         $email    = mysqli_real_escape_string($conn, $email);
@@ -47,15 +44,15 @@
             <h4 class="text-center mt-2 mb-3">Register</h1>
                 <div class="mb-3">
                     <label for="email-input" class="form-label">Email Adress</label>
-                    <input type="text" class="form-control" name="email" id="email-input" placeholder="Email Address">
+                    <input type="text" class="form-control" name="email" id="email-input" placeholder="Email Address" required>
                 </div>
                 <div class="mb-3">
                     <label for="username-input" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" id="username-input" placeholder="Username">
+                    <input type="text" class="form-control" name="username" id="username-input" placeholder="Username" required>
                 </div>
                 <div class="mb-3">
                     <label for="inputpassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="inputpassword" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="inputpassword" placeholder="Password" required>
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />

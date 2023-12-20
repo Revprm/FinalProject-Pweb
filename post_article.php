@@ -38,18 +38,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs" id="home_navigation">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Articles Website</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link" href="dashboard.php">Dashboard</a>
-                <a class="nav-link" href="logout.php">Logout</a>
+                <a class="nav-link" href="user_settings.php">Settings</a>
+                <a class="nav-link" href="user_logout.php">Logout</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5 align-content-lg-center bg-gs container-fluid rounded-3">
+    <div class="container mt-5 align-content-lg-center bg-gs container-fluid rounded-3 shadow-lg">
         <div class="container-fluid rounded-3">
             <form class="row g-3 m-3" method="post" name="add_article">
                 <div class="col-12 mb-3">
@@ -66,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-12 mb-3">
                     <label for="inputImageLinks" class="form-label">Image Links</label>
-                    <input type="text" class="form-control" name="image_links" id="inputImageLinks" placeholder="Enter image links (comma-separated)">
+                    <input type="text" class="form-control" name="image_links" id="inputImageLinks" placeholder="Enter image links">
                 </div>
                 <div class="col-12 mb-3">
                     <button type="submit" class="btn btn-primary rounded-2" style="width: 1224px;">Submit</button>
