@@ -17,21 +17,25 @@
     require('sqlcon.php');
     $conn = dbconn();
     session_start();
-    if (isset($_POST['username'])) {
-        $username = stripslashes($_REQUEST['username']);
-        $username = mysqli_real_escape_string($conn, $username);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($conn, $password);
-        $query    = "SELECT * FROM `users` WHERE username='$username'
-                     AND password='" . md5($password) . "'";
-        $result = mysqli_query($conn, $query);
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $hashed_password = md5($password);
+
+        $query = "SELECT * FROM `users` WHERE username = ? AND password = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ss", $username, $hashed_password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
             $_SESSION['username'] = $username;
             header("Location: dashboard.php");
+            exit();
         } else {
             echo "<form class='form rounded-4'>
-                  <p class='text-center mt-2 mb-3'>Username/password is incorrect.</h4>
+                  <p class='text-center mt-2 mb-3'>Username/password is incorrect.</p>
                   <br/>Click here to <a href='login.php'>Login</a></form>";
         }
     } else {

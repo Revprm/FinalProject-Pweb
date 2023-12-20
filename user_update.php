@@ -11,20 +11,24 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST['submit'])) {
-    $newUsername = stripslashes($_POST['new-username']);
-    $newUsername = mysqli_real_escape_string($conn, $newUsername);
-    $newPassword = stripslashes($_POST['new-password']);
-    $newPassword = mysqli_real_escape_string($conn, $newPassword);
-    
-    $query = "UPDATE `users` SET username='$newUsername', password='" . md5($newPassword) . "' WHERE username='" . $_SESSION['username'] . "'";
-    $result = mysqli_query($conn, $query);
+    $newUsername = $_POST['new-username'];
+    $newPassword = $_POST['new-password'];
 
-    if ($result) {
-        $_SESSION['username'] = $newUsername;  // Update the session with the new username
+    $query = "UPDATE `users` SET username=?, password=? WHERE username=?";
+    $stmt = $conn->prepare($query);
+    $hashedPassword = md5($newPassword);
+    $stmt->bind_param("sss", $newUsername, $hashedPassword, $_SESSION['username']);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        $_SESSION['username'] = $newUsername;
         header("Location: dashboard.php");
+        exit();
     } else {
         echo "Failed to update account. Please try again.";
     }
+
+    $stmt->close();
 }
 
 $conn->close();

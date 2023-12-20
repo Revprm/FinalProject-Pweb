@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        session_destroy();  // Destroy the session
+        session_destroy();
         header("Location: index.php");
     } else {
         echo "Failed to delete account. Please try again.";
