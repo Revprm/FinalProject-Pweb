@@ -33,6 +33,7 @@ $result = $conn->query($sql);
             <a class="navbar-brand" href="#">Articles Website</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="user_settings.php">Settings</a>
                 <a class="nav-link" href="logout.php">Logout</a>
             </div>
         </div>
@@ -41,9 +42,8 @@ $result = $conn->query($sql);
     <div class="container mt-5">
         <div class="form">
             <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
-            <p>You are now on the user dashboard page.</p>
-            <a href="update.php" class="btn container-fluid rounded-3 my-1">Update Account</a>
-            <a href="delete.php" class="btn container-fluid rounded-3">Delete Account</a>
+            <p>Welcome to the the user dashboard</p>
+            <p>Feel Free to modify your own articles in our website!</p>
             </form>
         </div>
     </div>
