@@ -60,17 +60,27 @@ $conn->close();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Articles Website</a>
-            <div class="navbar-nav ms-auto">
+    <section class="ftco-section sticky-top">
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
+	        </ul>
+	      </div>
+          <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link" href="dashboard.php">Dashboard</a>
                 <a class="nav-link" href="user_settings.php">Settings</a>
                 <a class="nav-link" href="user_logout.php">Logout</a>
             </div>
-        </div>
-    </nav>
+	    </div>
+	  </nav>
+
+	</section>
 
     <div class="container mt-5 align-content-lg-center bg-gs container-fluid rounded-3 shadow-lg">
         <div class="container-fluid rounded-3">

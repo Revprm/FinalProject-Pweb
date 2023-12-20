@@ -7,7 +7,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT artikel.id, artikel.judul, artikel.subjudul, artikel.image_url, users.username AS author 
+$sql = "SELECT artikel.id, artikel.judul, artikel.subjudul, artikel.image_url, users.username AS author, users.email 
         FROM artikel
         INNER JOIN users ON artikel.id_user = users.id";
 
@@ -23,7 +23,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/gs_color.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -31,28 +31,53 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Articles Website</a>
-            <div class="navbar-nav ms-auto">
+    <section class="ftco-section sticky-top">
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
+	        </ul>
+	      </div>
+          <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="index.php">Home</a>
                 <a class="nav-link" href="user_settings.php">Settings</a>
                 <a class="nav-link" href="user_logout.php">Logout</a>
             </div>
-        </div>
-    </nav>
+	    </div>
+	  </nav>
+
+	</section>
 
     <div class="container mt-5">
-        <div class="form shadow-lg">
-            <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
-            <p>Welcome to the the user dashboard</p>
-            <p>Feel Free to modify your own articles in our website!</p>
-            </form>
+        <div class="row">
+            <div class="col form shadow-lg mx-3">
+            <p><?php echo $_SESSION['username']; ?>!</p>
+                <?php
+                // Check if the 'email' key is set in the $_SESSION array
+                if (isset($_SESSION['email'])) {
+                    echo '<p>' . $_SESSION['email'] . '!</p>';
+                } else {
+                    echo '<p>Email not set!</p>';
+                }
+                ?>
+            </div>
+            <div class="col form shadow-lg">
+                <p>Cara Menambahkan List Makanan</p>
+                <p>1. Pencet tombol Tambah Makanan</p>
+                <p>2. Isi data - data yang diperlukan</p>
+                <p>3. Untuk gambar, copy image adress nya dari gambar yang anda ingin masukkan</p>
+                <p>4. gunakan embed map pada google map</p>
+                <p>Pencet submit dan Referensi makanan anda sudah di post!</p>
+                </form>
+            </div>
         </div>
     </div>
 
     <div class="container rounded-5 p-5">
-        <input class="form-control shadow-lg" id="myInput" type="text" placeholder="Search..">
         <br>
         <table class="table table-responsive table-hover shadow-lg" id="tabel">
             <thead>

@@ -33,10 +33,18 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs p-3 shadow-lg" id="home_navigation">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Articles Website</a>
-      <div class="navbar-nav ms-auto">
+<section class="ftco-section sticky-top">
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
+	        </ul>
+	      </div>
+        <div class="navbar-nav ms-auto">
         <a class="nav-link" href="index.php">Home</a>
         <?php
         if (isset($_SESSION['username'])) {
@@ -47,16 +55,24 @@ $result = $conn->query($sql);
         }
         ?>
       </div>
-    </div>
-  </nav>
+	    </div>
+	  </nav>
 
-  <section id="About">
-    <div class="container-fluid text-center">
-      <h1>Revy Pramana</h1>
-      <figcaption class="blockquote-footer mt-2 text-light">
-        <em>A keyboard enthusiast</em>
-      </figcaption>
-      <p class="fs-5"><em>5025221252</em></p>
+	</section>
+
+  <section id="about" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Apa itu Masits?</h1>
+          <h2>Masits adalah website untuk anda yang belum mengetahui makanan - makanan enak di sekitar ITS</h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://asset.kompas.com/crops/YZLqjNDVZAfgW5WhcF4AhXCNWIQ=/0x83:1000x750/750x500/data/photo/2019/10/27/5db54a0447a82.jpg" class="img-fluid animated" alt="">
+        </div>
+      </div>
     </div>
   </section>
 

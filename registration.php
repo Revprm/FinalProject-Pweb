@@ -55,7 +55,7 @@
                     <input type="password" class="form-control" name="password" id="inputpassword" placeholder="Password" required>
                 </div>
                 <div class="mb-3">
-                    <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
+                    <input type="submit" value="Register" name="submit" class="btn container-fluid rounded-3" />
                     <p class="link mt-3">Already have an account? <a href="user_login.php">Login</a></p>
                     <p class="link mt-3"><a href="index.php">Home</a></p>
                 </div>

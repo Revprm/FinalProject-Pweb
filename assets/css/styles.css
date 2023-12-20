@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Graduate&family=Montserrat:ital@1&family=Poppins:ital,wght@0,400;0,500;1,200;1,300&family=Rokkitt&display=swap');
 
 * {
   font-family: "Inter", "Poppins", sans-serif;
@@ -15,7 +15,7 @@
 
 
 body {
-  background-color: #cacaca;
+  background-color: #67797c;
 }
 
 #about {

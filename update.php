@@ -18,35 +18,20 @@ include("auth_session.php");
 </head>
 
 <body>
-    <section class="ftco-section sticky-top">
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav mr-auto">
-	        	<li class="nav-item active"><a href="#" class="nav-link">Masits</a></li>
-	        </ul>
-	      </div>
-          <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="index.php">Home</a>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-gs bg-gs" id="home_navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Articles Website</a>
+            <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="dashboard.php">Dashboard</a>
-                <a class="nav-link" href="user_logout.php">Logout</a>
+                <a class="nav-link" href="logout.php">Logout</a>
             </div>
-	    </div>
-	  </nav>
-
-	</section>
+        </div>
+    </nav>
 
     <div class="container mt-5">
-        <div class="form rounded-4 shadow-lg">
-            <h4 class="text-center mt-2 mb-3">Account Settings</h4>
-            <form action="user_update.php" method="post">
-                <div class="mb-3">
-                    <label for="new-email" class="form-label">New Email</label>
-                    <input type="text" class="form-control" name="new-email" id="new-email" placeholder="New Email" required>
-                </div>
+        <div class="form">
+            <h4 class="text-center mt-2 mb-3">Update Account</h4>
+            <form action="process_update.php" method="post">
                 <div class="mb-3">
                     <label for="new-username" class="form-label">New Username</label>
                     <input type="text" class="form-control" name="new-username" id="new-username" placeholder="New Username" required>
@@ -59,11 +44,6 @@ include("auth_session.php");
                     <input type="submit" value="Update" name="submit" class="btn container-fluid rounded-3" />
                 </div>
             </form>
-            <div class="col-12 mb-3">
-                <a href="user_delete.php">
-                    <button class="btn btn-primary rounded-2" style="width: 250px;">Delete</button>
-                </a>
-            </div>
         </div>
     </div>
 </body>
