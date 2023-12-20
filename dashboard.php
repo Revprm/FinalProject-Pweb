@@ -84,7 +84,10 @@ $result = $conn->query($sql);
                         }
                     }
                     if (!$check) {
-                        echo '<tr><th scope="col" id="desc">No Articles found</th></tr>';
+                        echo '<tr><th scope="col" id="desc">No Articles found</th>';
+                        echo '<th scope="col" id="desc"></th>';
+                        echo '</tr>';
+                        
                     }
                 }
                 $conn->close();
