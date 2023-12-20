@@ -32,7 +32,7 @@ include("auth_session.php");
     <div class="container mt-5">
         <div class="form rounded-4 shadow-lg">
             <h4 class="text-center mt-2 mb-3">Account Settings</h4>
-            <form action="process_update.php" method="post">
+            <form action="user_update.php" method="post">
                 <div class="mb-3">
                     <label for="new-username" class="form-label">New Username</label>
                     <input type="text" class="form-control" name="new-username" id="new-username" placeholder="New Username" required>

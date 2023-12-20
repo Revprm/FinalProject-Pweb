@@ -40,7 +40,7 @@ $result = $conn->query($sql);
           echo '<a class="nav-link" href="dashboard.php">' . $_SESSION['username'] . '</a>';
           echo'<a class="nav-link" href="user_logout.php">Logout</a>';
         } else {
-          echo '<a class="nav-link" href="login.php">Login</a>';
+          echo '<a class="nav-link" href="user_login.php">Login</a>';
         }
         ?>
       </div>

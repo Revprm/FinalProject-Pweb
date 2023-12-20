@@ -25,7 +25,7 @@ include("auth_session.php");
             <a href="index.php">
                 <button class="btn shadow-lg mt-4 rounded-3" style="width: 250px;">No</button>
             </a>
-            <a href="logout.php">
+            <a href="process_logout.php">
                 <button class="btn shadow-lg mt-4 rounded-3" style="width: 250px;">Yes</button>
             </a>
             </form>

@@ -56,7 +56,7 @@
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
-                    <p class="link mt-3">Already have an account? <a href="login.php">Login</a></p>
+                    <p class="link mt-3">Already have an account? <a href="user_login.php">Login</a></p>
                     <p class="link mt-3"><a href="index.php">Home</a></p>
                 </div>
         </form>
