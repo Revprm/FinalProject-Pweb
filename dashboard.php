@@ -62,6 +62,10 @@ $result = $conn->query($sql);
                 <?php
                 $check = false;
                 if ($result->num_rows > 0) {
+                    $stmt = $conn->prepare("SELECT * FROM artikel WHERE author = ?");
+                    $stmt->bind_param("s", $_SESSION['username']);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
                     while ($row = $result->fetch_assoc()) {
                         if ($row['author'] == $_SESSION['username']) {
                             $check = true;
