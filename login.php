@@ -49,7 +49,9 @@
                 <div class="mb-3">
                     <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
                     <p class="link mt-3"><a href="registration.php">Register</a></p>
+                    <p class="link mt-3"><a href="index.php">Home</a></p>
                 </div>
+        </form>
         </form>
     <?php
     }

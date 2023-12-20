@@ -46,7 +46,7 @@
         <form class="form rounded-4" method="post" name="login">
             <h4 class="text-center mt-2 mb-3">Register</h1>
                 <div class="mb-3">
-                    <label for="email-input" class="form-label">Username</label>
+                    <label for="email-input" class="form-label">Email Adress</label>
                     <input type="text" class="form-control" name="email" id="email-input" placeholder="Email Address">
                 </div>
                 <div class="mb-3">
@@ -60,6 +60,7 @@
                 <div class="mb-3">
                     <input type="submit" value="Login" name="submit" class="btn container-fluid rounded-3" />
                     <p class="link mt-3">Already have an account? <a href="login.php">Login</a></p>
+                    <p class="link mt-3"><a href="index.php">Home</a></p>
                 </div>
         </form>
     <?php

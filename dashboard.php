@@ -42,6 +42,8 @@ $result = $conn->query($sql);
         <div class="form">
             <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
             <p>You are now on the user dashboard page.</p>
+            <a href="update.php" class="btn container-fluid rounded-3 my-1">Update Account</a>
+            <a href="delete.php" class="btn container-fluid rounded-3">Delete Account</a>
             </form>
         </div>
     </div>
